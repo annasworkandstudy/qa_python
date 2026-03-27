@@ -59,7 +59,7 @@ class TestBooksCollector:
         genre_collector = BooksCollector()
         genre_collector.add_new_book('Новая книга')
         genre_collector.set_book_genre('Новая книга', 'Комедии')
-        assert genre_collector.get_book_genre('Новая книга') == 'Комедии' 
+        assert genre_collector.books_genre == {'Новая книга': 'Комедии'}
 
     
     def test_get_books_for_children_show_books(self):
