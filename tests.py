@@ -41,7 +41,7 @@ class TestBooksCollector:
     def test_get_book_genre_show_name_book(self, collector):
         book_name='Гордость и предубеждение и зомби'
         collector.set_book_genre(book_name, 'Ужасы')
-        assert collector.get_book_genre(book_name) == 'Ужасы'
+        assert collector.books_genre.get(book_name) == 'Ужасы'
 
     
     def test_get_books_with_specific_genre_list_genre_book(self):
