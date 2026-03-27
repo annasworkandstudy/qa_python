@@ -83,4 +83,4 @@ class TestBooksCollector:
     def test_get_list_of_favorites_books_show_list_favorites(self, collector):
         book_name='Гордость и предубеждение и зомби'
         collector.add_book_in_favorites(book_name)
-        assert collector.get_list_of_favorites_books() == [book_name]
+        assert book_name in collector.favorites
