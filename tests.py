@@ -25,6 +25,11 @@ class TestBooksCollector:
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
 
     @pytest.fixture
+    def new_object(self):
+        new_object = BooksCollector()
+        return new_object
+    
+    @pytest.fixture
     def collector(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
@@ -44,29 +49,26 @@ class TestBooksCollector:
         assert collector.books_genre.get(book_name) == 'Ужасы'
 
     
-    def test_get_books_with_specific_genre_list_genre_book(self):
-        collector = BooksCollector()
-        collector.add_new_book('Идиот')
-        collector.add_new_book('Доктор Айболит')
-        collector.add_new_book('Преступление и наказание')
-        collector.set_book_genre('Идиот', 'Фантастика')
-        collector.set_book_genre('Доктор Айболит', 'Ужасы')
-        collector.set_book_genre('Преступление и наказание', 'Фантастика')
-        assert collector.get_books_with_specific_genre('Фантастика')==['Идиот', 'Преступление и наказание']
+    def test_get_books_with_specific_genre_list_genre_book(self, new_object):
+        new_object.add_new_book('Идиот')
+        new_object.add_new_book('Доктор Айболит')
+        new_object.add_new_book('Преступление и наказание')
+        new_object.set_book_genre('Идиот', 'Фантастика')
+        new_object.set_book_genre('Доктор Айболит', 'Ужасы')
+        new_object.set_book_genre('Преступление и наказание', 'Фантастика')
+        assert new_object.get_books_with_specific_genre('Фантастика')==['Идиот', 'Преступление и наказание']
     
     
-    def test_get_books_genre_list_of_genre(self):
-        genre_collector = BooksCollector()
-        genre_collector.add_new_book('Новая книга')
-        genre_collector.set_book_genre('Новая книга', 'Комедии')
-        assert genre_collector.books_genre == {'Новая книга': 'Комедии'}
+    def test_get_books_genre_list_of_genre(self, new_object):
+        new_object.add_new_book('Новая книга')
+        new_object.set_book_genre('Новая книга', 'Комедии')
+        assert new_object.books_genre == {'Новая книга': 'Комедии'}
 
     
-    def test_get_books_for_children_show_books(self):
-        collector = BooksCollector()
-        collector.add_new_book('Доктор Айболит')
-        collector.set_book_genre('Доктор Айболит', 'Мультфильмы')
-        assert 'Доктор Айболит' in collector.get_books_for_children()
+    def test_get_books_for_children_show_books(self, new_object):
+        new_object.add_new_book('Доктор Айболит')
+        new_object.set_book_genre('Доктор Айболит', 'Мультфильмы')
+        assert 'Доктор Айболит' in new_object.get_books_for_children()
 
      
     def test_add_book_in_favorites_book_is_added(self, collector):
