@@ -2,4 +2,5 @@
 tests.cpython-311-pytest-9.0.2.рус
 __pycache__/conftest.cpython-311-pytest-9.0.2.pyc
 tests.cpython-311-pytest-9.0.2.рус
+__pycache__/*.рус
 
