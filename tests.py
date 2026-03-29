@@ -31,20 +31,20 @@ class TestBooksCollector:
     
     
     @pytest.mark.parametrize('genre',['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'])
-    def test_set_book_genre_add_new_genre(self, new_object, genre):
+    def test_set_book_genre_genre_in_list(self, new_object, genre):
         book_name='Гордость и предубеждение и зомби'
         new_object.add_new_book(book_name)
         new_object.set_book_genre(book_name, genre)
         assert new_object.get_book_genre(book_name)== genre
 
     
-    def test_get_book_genre_show_name_book(self, new_object):
+    def test_get_book_genre_show_genre_book(self, new_object):
         new_object.add_new_book('Гордость и предубеждение и зомби')
         new_object.set_book_genre('Гордость и предубеждение и зомби', 'Ужасы')
         assert new_object.books_genre.get('Гордость и предубеждение и зомби') == 'Ужасы'
 
     
-    def test_get_books_with_specific_genre_list_genre_book(self, new_object):
+    def test_get_books_with_specific_genre_list_name_book(self, new_object):
         new_object.add_new_book('Идиот')
         new_object.add_new_book('Доктор Айболит')
         new_object.add_new_book('Преступление и наказание')
@@ -60,26 +60,26 @@ class TestBooksCollector:
         assert new_object.books_genre == {'Новая книга': 'Комедии'}
 
     
-    def test_get_books_for_children_show_books(self, new_object):
+    def test_get_books_for_children_show_book(self, new_object):
         new_object.add_new_book('Доктор Айболит')
         new_object.set_book_genre('Доктор Айболит', 'Мультфильмы')
         assert 'Доктор Айболит' in new_object.get_books_for_children()
 
      
-    def test_add_book_in_favorites_book_is_added(self, new_object):
+    def test_add_book_in_favorites_show_list_favorites(self, new_object):
         new_object.add_new_book('Гордость и предубеждение и зомби')
         new_object.add_book_in_favorites('Гордость и предубеждение и зомби')
         assert 'Гордость и предубеждение и зомби' in new_object.get_list_of_favorites_books()
     
     
-    def test_delete_book_from_favorites_book_is_deleted(self, new_object):
+    def test_delete_book_from_favorites_book_not_in_favorites(self, new_object):
         new_object.add_new_book('Гордость и предубеждение и зомби')
         new_object.add_book_in_favorites('Гордость и предубеждение и зомби')
         new_object.delete_book_from_favorites('Гордость и предубеждение и зомби')
         assert ('Гордость и предубеждение и зомби') not in new_object.get_list_of_favorites_books()
     
     
-    def test_get_list_of_favorites_books_show_list_favorites(self, new_object):
+    def test_get_list_of_favorites_books_book_is_added_in_favourites(self, new_object):
         new_object.add_new_book('Гордость и предубеждение и зомби')
         new_object.add_book_in_favorites('Гордость и предубеждение и зомби')
         assert 'Гордость и предубеждение и зомби' in new_object.favorites
